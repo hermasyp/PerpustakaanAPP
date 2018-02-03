@@ -11,6 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
+            android:src="@drawable/placeholder"
+            android:scaleType="centerCrop"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:id="@+id/image_view"/>
@@ -22,11 +24,15 @@
             android:layout_height="wrap_content" >
             <TextView
                 android:id="@+id/txtJudulBuku"
-                android:layout_marginBottom="4dp"
+                android:text="Android Programming"
+                android:textStyle="bold"
+                android:fontFamily="@font/caviardreamsbold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
                 android:id="@+id/txtPenulisBuku"
+                android:fontFamily="@font/caviardreams"
+                android:text="Muhammad Hermas Yuda P"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </LinearLayout>
