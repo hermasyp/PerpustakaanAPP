@@ -3,6 +3,7 @@ package id.dev.catnip.perpustakaanapp.Networking
 import id.dev.catnip.perpustakaanapp.BuildConfig
 import id.dev.catnip.perpustakaanapp.Model.Books.BooksItem
 import id.dev.catnip.perpustakaanapp.Model.Books.BooksResponse
+import id.dev.catnip.perpustakaanapp.Model.Response.RequestResponse
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -20,13 +21,13 @@ interface APIInterface {
     fun getBooksByID(@Path("id") page :Int): Call<BooksResponse>
 
     @POST("perpus")
-    fun postBook(@Body booksItem: BooksItem): Call<BooksResponse>
+    fun postBook(@Body booksItem: BooksItem): Call<RequestResponse>
 
     @DELETE("perpus/{id}")
-    fun deleteBook(@Path("id") page :Int): Call<BooksResponse>
+    fun deleteBook(@Path("id") page :Int): Call<RequestResponse>
 
     @PUT("perpus/{id}")
-    fun updateBook(@Path("id") page :Int,@Body booksItem: BooksItem): Call<BooksResponse>
+    fun updateBook(@Path("id") page :Int,@Body booksItem: BooksItem): Call<RequestResponse>
 
 
     companion object Factory {
