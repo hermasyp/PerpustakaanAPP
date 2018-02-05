@@ -13,7 +13,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        buildConfigField("String", "URI", "\"http://192.168.0.106/PerpustakaanAPI/public/api/\"")
+        buildConfigField("String", "URI", "\"http://10.0.2.2/PerpustakaanAPI/public/api/\"")
 
     }
     buildTypes {

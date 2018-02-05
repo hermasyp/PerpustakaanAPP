@@ -1,5 +1,6 @@
 package id.dev.catnip.perpustakaanapp.UI.Activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
@@ -32,14 +33,16 @@ class MainActivity : AppCompatActivity() {
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
         }
-        Books()
+        getBooks()
     }
 
 
     fun itemClicked(book:BooksItem){
-        Toast.makeText(this,book.judulBuku,Toast.LENGTH_SHORT).show()
+        var i = Intent(this,DetailActivity::class.java)
+        i.putExtra("book",book)
+        startActivity(i)
     }
-    fun Books(): Unit {
+    fun getBooks(): Unit {
         val call = APIInterface.create().getBooks()
         Log.d("Books URL", call.request().url().toString())
         call.enqueue(object : Callback<BooksResponse> {

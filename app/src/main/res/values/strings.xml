@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Perpustakaan</string>
+    <string name="act_form">Book Form</string>
     <string name="action_settings">Settings</string>
 </resources>

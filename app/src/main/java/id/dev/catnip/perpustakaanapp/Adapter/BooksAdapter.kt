@@ -10,6 +10,7 @@ import com.amulyakhare.textdrawable.util.ColorGenerator
 import id.dev.catnip.perpustakaanapp.Model.Books.BooksItem
 import id.dev.catnip.perpustakaanapp.R
 import kotlinx.android.synthetic.main.item_book.view.*
+import id.dev.catnip.perpustakaanapp.utils.DrawableText
 
 
 class BooksAdapter(var mContext: Context, var items: List<BooksItem>?, val itemClick: (BooksItem) -> Unit) : RecyclerView.Adapter<BooksAdapter.VHBook>() {
@@ -37,16 +38,7 @@ class BooksAdapter(var mContext: Context, var items: List<BooksItem>?, val itemC
                 itemView.txtJudulBuku.text = item.judulBuku
                 itemView.txtPenulisBuku.text = item.pengarangBuku
                 itemView.setOnClickListener { itemClick(this) }
-                val generator :ColorGenerator = ColorGenerator.MATERIAL
-                var color = generator.randomColor
-                val builder: TextDrawable.IBuilder = TextDrawable.builder()
-                        .beginConfig()
-                            .width(60)  // width in px
-                            .height(60) // height in px\
-                        .endConfig()
-                        .round()
-                val draw = builder.build(item.judulBuku!!.substring(0,2), color)
-                itemView.imgItem.setImageDrawable(draw)
+                itemView.imgItem.setImageDrawable(DrawableText.makeDrawable(item.judulBuku))
             }
 
         }
