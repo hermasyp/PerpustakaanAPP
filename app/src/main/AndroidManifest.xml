@@ -17,13 +17,14 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".UI.Activity.DetailActivity"
-            android:label="Detail Buku">
-        </activity>
+            android:label="Detail Buku"></activity>
+        <activity android:name=".UI.Activity.BookFormActivity"></activity>
     </application>
 
 </manifest>

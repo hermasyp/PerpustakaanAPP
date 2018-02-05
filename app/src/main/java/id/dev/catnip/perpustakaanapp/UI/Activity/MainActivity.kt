@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import id.dev.catnip.perpustakaanapp.Adapter.BooksAdapter
 import id.dev.catnip.perpustakaanapp.Model.Books.BooksItem
@@ -28,10 +29,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
-
+        if(toolbar_text!=null && toolbar!=null) {
+            toolbar_text.text = title
+            title = ""
+        }
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+           val i = Intent(this,BookFormActivity::class.java)
+            startActivity(i)
         }
         getBooks()
     }
@@ -43,6 +47,7 @@ class MainActivity : AppCompatActivity() {
         startActivity(i)
     }
     fun getBooks(): Unit {
+        showLoading(true)
         val call = APIInterface.create().getBooks()
         Log.d("Books URL", call.request().url().toString())
         call.enqueue(object : Callback<BooksResponse> {
@@ -52,15 +57,30 @@ class MainActivity : AppCompatActivity() {
                     rvBooks.adapter =  BooksAdapter(this@MainActivity, response.body()?.books as List<BooksItem>?,{
                         itemClicked(it)
                     })
+                    hideLoading()
                 }
             }
             override fun onFailure(call: Call<BooksResponse>?, t: Throwable?) {
                 Toast.makeText(this@MainActivity,"Connection Failure",Toast.LENGTH_SHORT).show()
+                hideLoading()
             }
         })
     }
 
-
+    private fun showLoading( isRefresh: Boolean) {
+        prBarNews.visibility = View.VISIBLE
+        prBarNews.visibility.let {
+            if (isRefresh) {
+                View.VISIBLE
+            } else {
+                View.GONE
+            }
+        }
+    }
+    private fun hideLoading() {
+        prBarNews.visibility = View.GONE
+        rvBooks.visibility = View.VISIBLE
+    }
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
@@ -72,8 +92,12 @@ class MainActivity : AppCompatActivity() {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
-            R.id.action_settings -> true
+            R.id.action_refresh -> {
+                getBooks()
+                return true
+            }
             else -> super.onOptionsItemSelected(item)
+
         }
     }
 }
