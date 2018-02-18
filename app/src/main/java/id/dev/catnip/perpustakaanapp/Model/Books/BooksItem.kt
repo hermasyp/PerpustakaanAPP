@@ -6,14 +6,17 @@ import com.google.gson.annotations.SerializedName
 
 data class BooksItem(
 
-	@field:SerializedName("Stok_Buku")
-	val stokBuku: Int? = null,
-
 	@field:SerializedName("Pengarang_buku")
 	val pengarangBuku: String? = null,
 
+	@field:SerializedName("Stok_buku")
+	val stokBuku: Int? = null,
+
 	@field:SerializedName("updated_at")
 	val updatedAt: String? = null,
+
+	@field:SerializedName("Judul_buku")
+	val judulBuku: String? = null,
 
 	@field:SerializedName("created_at")
 	val createdAt: String? = null,
@@ -22,29 +25,26 @@ data class BooksItem(
 	val id: Int? = null,
 
 	@field:SerializedName("Deskripsi_buku")
-	val deskripsiBuku: String? = null,
-
-	@field:SerializedName("judul_buku")
-	val judulBuku: String? = null
+	val deskripsiBuku: String? = null
 ) : Parcelable {
 	constructor(parcel: Parcel) : this(
-			parcel.readValue(Int::class.java.classLoader) as? Int,
-			parcel.readString(),
-			parcel.readString(),
 			parcel.readString(),
 			parcel.readValue(Int::class.java.classLoader) as? Int,
 			parcel.readString(),
+			parcel.readString(),
+			parcel.readString(),
+			parcel.readValue(Int::class.java.classLoader) as? Int,
 			parcel.readString()) {
 	}
 
 	override fun writeToParcel(parcel: Parcel, flags: Int) {
-		parcel.writeValue(stokBuku)
 		parcel.writeString(pengarangBuku)
+		parcel.writeValue(stokBuku)
 		parcel.writeString(updatedAt)
+		parcel.writeString(judulBuku)
 		parcel.writeString(createdAt)
 		parcel.writeValue(id)
 		parcel.writeString(deskripsiBuku)
-		parcel.writeString(judulBuku)
 	}
 
 	override fun describeContents(): Int {

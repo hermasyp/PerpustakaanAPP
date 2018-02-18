@@ -5,12 +5,10 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.amulyakhare.textdrawable.TextDrawable
-import com.amulyakhare.textdrawable.util.ColorGenerator
 import id.dev.catnip.perpustakaanapp.Model.Books.BooksItem
+import id.dev.catnip.perpustakaanapp.utils.DrawableText
 import id.dev.catnip.perpustakaanapp.R
 import kotlinx.android.synthetic.main.item_book.view.*
-import id.dev.catnip.perpustakaanapp.utils.DrawableText
 
 
 class BooksAdapter(var mContext: Context, var items: List<BooksItem>?, val itemClick: (BooksItem) -> Unit) : RecyclerView.Adapter<BooksAdapter.VHBook>() {

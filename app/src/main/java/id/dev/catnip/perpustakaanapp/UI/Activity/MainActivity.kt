@@ -2,7 +2,6 @@ package id.dev.catnip.perpustakaanapp.UI.Activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
@@ -76,6 +75,11 @@ class MainActivity : AppCompatActivity() {
                 View.GONE
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        getBooks()
     }
     private fun hideLoading() {
         prBarNews.visibility = View.GONE
